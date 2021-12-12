@@ -28,6 +28,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/book/getallbooks">Get all Books</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/book/getbook">Get Book</a>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-success mx-2" type="submit">Log in</button>
@@ -45,6 +48,7 @@
             Copyright &copy; Book Application @DateTime.Now.Year
         </div>
     </footer>
+    <script src="~/lib/jquery/jquery.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
-<script src="~/lib/bootstrap/js/bootstrap.js"></script>
 </html>

@@ -3,13 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"] | Book Application</title>
+    <environment include="Development">
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    </environment>
+    <environment include="Production">
+        <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    </environment>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index" >
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                     <img src="~/images/bookImage/booklogo.jpg" width="30" asp-append-version="true" height="30" />
                 </a>
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">Book APP</a>
@@ -47,8 +53,14 @@
             Copyright &copy; Book Application @DateTime.Now.Year
         </div>
     </footer>
-    <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <environment include="Development">
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <script src="~/lib/jquery/jquery.js"></script>
+    </environment>
+    <environment include="Production">
+        <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/lib/jquery/jquery.min.js"></script>
+    </environment>
     @RenderSection("scripts", required: false)
 </body>
 </html>

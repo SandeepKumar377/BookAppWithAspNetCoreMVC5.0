@@ -24,11 +24,11 @@ namespace DiverseBookApp.Repository
         {
             return new List<BookModel>()
             {
-                new BookModel(){ Id=1, Title="MVC", Author="Sandeep", Description="This is MVC Description"},
-                new BookModel(){ Id=2, Title="JAVA", Author="Kumar", Description="This is JAVA Description"},
-                new BookModel(){ Id=3, Title="html", Author="Sendy", Description="This is HTML Description"},
-                new BookModel(){ Id=4, Title="php", Author="Sandeep4", Description="This is PHP Description"},
-                new BookModel(){ Id=5, Title="python", Author="Sandeep5", Description="This is Python Description"},
+                new BookModel(){ Id=1,Language="English", TotalPages=1033, Category="Pro" ,Title="MVC", Author="Sandeep", Description="This is MVC Description"},
+                new BookModel(){ Id=2,Language="French", TotalPages=103, Category="Prog" ,Title="JAVA", Author="Kumar", Description="This is JAVA Description"},
+                new BookModel(){ Id=3,Language="Hindi", TotalPages=1043, Category="Data" ,Title="html", Author="Sendy", Description="This is HTML Description"},
+                new BookModel(){ Id=4,Language="English", TotalPages=133, Category="ML" ,Title="php", Author="Sandeep4", Description="This is PHP Description"},
+                new BookModel(){ Id=5,Language="Chines", TotalPages=1833, Category="MI" ,Title="python", Author="Sandeep5", Description="This is Python Description"},
             };
         }
     }

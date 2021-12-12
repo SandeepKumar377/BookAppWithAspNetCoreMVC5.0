@@ -1,27 +1,76 @@
 ﻿@using DiverseBookApp.Models;
-@model IEnumerable<BookModel>
+@model BookModel;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
     <div class="display-6 py-3">
-        Book
+        Book Details
     </div>
     <div class="row col-md-12">
-            <div class="col-md-4 ">
+        <div class="col-md-6">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/images/bookImage/book1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/images/bookImage/book2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/images/bookImage/book3.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="display-6">@Model.Title</div>
+            <p> <strong> By :</strong> Author</p>
+            <P class="align-items-center">
+                @Model.Description
+            </P>
+            <button class="btn btn-primary">Read Now</button>
+            <ul class="list-group my-3">
+                <li class="list-group-item"> <strong> Category : </strong> @Model.Category</li>
+                <li class="list-group-item"><strong> Total Pages : </strong>@Model.TotalPages</li>
+                <li class="list-group-item"><strong> Language : </strong> @Model.Language</li>
+            </ul>
+        </div>
+    </div>
+    <div class="display-6 py-3">
+        Similar Books
+    </div>
+    <div class="row col-md-12">
+        @for (var i = 0; i <= 5; i++)
+        {
+            <div class="col-md-4 my-3">
                 <div class="card" style="width: 18rem;">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                     <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text"></p>
+                        <h5 class="card-title">Title</h5>
+                        <p class="card-text">Description</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="" class="btn btn-primary">Details</a>
-                            <small></small>
+                            <small>Author</small>
                         </div>
                     </div>
                 </div>
             </div>
+        }
     </div>
 </div>
 

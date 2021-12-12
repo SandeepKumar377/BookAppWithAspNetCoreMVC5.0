@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /DiverseBookApp/wwwroot/lib/bootstrap
 /DiverseBookApp/wwwroot/lib/jquery
+/DiverseBookApp/wwwroot/images/bookImage

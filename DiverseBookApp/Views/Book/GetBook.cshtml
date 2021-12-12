@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = Model.Title + "Book Details";
+    ViewData["Title"] = Model.Title + " Book Details";
 }
 @model BookModel;
 
@@ -53,10 +53,10 @@
     <div class="display-6 py-3">
         Similar Books
     </div>
-    <div class="row col-md-12" id="similarBooks">
+    <div class="row col-md-12">
         @for (var i = 0; i <= 5; i++)
         {
-            <div class="col-md-4 my-3">
+            <div class="col-md-4 my-3 mx-0">
                 <div class="card" style="width: 18rem;">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                     <div class="card-body">

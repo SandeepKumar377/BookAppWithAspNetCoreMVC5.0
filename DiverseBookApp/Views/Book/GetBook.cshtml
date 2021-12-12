@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = Model.Title + "Book Details";
+    ViewData["Title"] = Model.book.Title + "Book Details";
 }
-@model BookModel;
+@*@model BookModel;*@
 
 <div class="container">
     <div class="display-6 py-3">
-        Book Details
+        Book Details @Model.Name
     </div>
     <div class="row col-md-12">
         <div class="col-md-6">
@@ -37,16 +37,16 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="display-6">@Model.Title</div>
-            <p> <strong> By :</strong> Author</p>
+            <div class="display-6">@Model.book.Title</div>
+            <p> <strong> By :</strong> @Model.book.Author</p>
             <P class="align-items-center">
-                @Model.Description
+                @Model.book.Description
             </P>
             <button class="btn btn-primary">Read Now</button>
             <ul class="list-group my-3">
-                <li class="list-group-item"> <strong> Category : </strong> @Model.Category</li>
-                <li class="list-group-item"><strong> Total Pages : </strong>@Model.TotalPages</li>
-                <li class="list-group-item"><strong> Language : </strong> @Model.Language</li>
+                <li class="list-group-item"> <strong> Category : </strong> @Model.book.Category</li>
+                <li class="list-group-item"><strong> Total Pages : </strong>@Model.book.TotalPages</li>
+                <li class="list-group-item"><strong> Language : </strong> @Model.book.Language</li>
             </ul>
         </div>
     </div>

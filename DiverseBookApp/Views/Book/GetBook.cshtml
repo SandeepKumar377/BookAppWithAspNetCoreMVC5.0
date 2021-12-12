@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = Model.book.Title + "Book Details";
+    ViewData["Title"] = Model.Title + "Book Details";
 }
-@*@model BookModel;*@
+@model BookModel;
 
 <div class="container">
     <div class="display-6 py-3">
-        Book Details @Model.Name
+        Book Details
     </div>
     <div class="row col-md-12">
         <div class="col-md-6">
@@ -37,23 +37,23 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="display-6">@Model.book.Title</div>
-            <p> <strong> By :</strong> @Model.book.Author</p>
+            <div class="display-6">@Model.Title</div>
+            <p> <strong> By :</strong> @Model.Author</p>
             <P class="align-items-center">
-                @Model.book.Description
+                @Model.Description
             </P>
             <button class="btn btn-primary">Read Now</button>
             <ul class="list-group my-3">
-                <li class="list-group-item"> <strong> Category : </strong> @Model.book.Category</li>
-                <li class="list-group-item"><strong> Total Pages : </strong>@Model.book.TotalPages</li>
-                <li class="list-group-item"><strong> Language : </strong> @Model.book.Language</li>
+                <li class="list-group-item"> <strong> Category : </strong> @Model.Category</li>
+                <li class="list-group-item"><strong> Total Pages : </strong>@Model.TotalPages</li>
+                <li class="list-group-item"><strong> Language : </strong> @Model.Language</li>
             </ul>
         </div>
     </div>
     <div class="display-6 py-3">
         Similar Books
     </div>
-    <div class="row col-md-12">
+    <div class="row col-md-12" id="similarBooks">
         @for (var i = 0; i <= 5; i++)
         {
             <div class="col-md-4 my-3">

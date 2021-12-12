@@ -3,7 +3,6 @@ using DiverseBookApp.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,10 +25,8 @@ namespace DiverseBookApp.Controllers
 
         public ViewResult GetBook(int id)
         {
-            dynamic data = new ExpandoObject();
 
-            data.book = _bookRepository.GetBookById(id);
-            data.Name = "Sandeep";
+            var data = _bookRepository.GetBookById(id);
             return View(data);
         }
 

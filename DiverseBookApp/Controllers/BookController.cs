@@ -29,10 +29,20 @@ namespace DiverseBookApp.Controllers
             var data = _bookRepository.GetBookById(id);
             return View(data);
         }
-
         public List<BookModel> SearchBooks(string bookName, string authorName)
         {
             return _bookRepository.SearchBook(bookName, authorName);
+        }
+
+        public ViewResult AddNewBook()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public ViewResult AddNewBook(BookModel bookModel)
+        {
+            return View();
         }
     }
 }

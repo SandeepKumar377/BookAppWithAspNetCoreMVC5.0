@@ -14,7 +14,7 @@
       "library": "bootstrap@5.1.3",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
-        "js/bootstrap.min.js.map"
+        "css/bootstrap.min.css.map"
       ]
     }
   ]

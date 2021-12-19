@@ -17,7 +17,7 @@ namespace DiverseBookApp.Repository
         }
 
         //Add book method 
-        public int AddBook(BookModel model)
+        public async Task<int> AddBook(BookModel model)
         {
             var newBook = new Books()
             {   
@@ -28,8 +28,8 @@ namespace DiverseBookApp.Repository
                 UpdatedOn = DateTime.UtcNow,
                 TotalPages = model.TotalPages,
             };
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+            await _context.Books.AddAsync(newBook);
+            await _context.SaveChangesAsync();
             return newBook.Id;
         }
 

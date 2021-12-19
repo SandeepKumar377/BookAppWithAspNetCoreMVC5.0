@@ -42,9 +42,9 @@ namespace DiverseBookApp.Controllers
         }
         
         [HttpPost]
-        public IActionResult AddNewBook(BookModel bookModel)
+        public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
-           var id= _bookRepository.AddBook(bookModel);
+           var id= await _bookRepository.AddBook(bookModel);
             if (id>0)
             {
                 return RedirectToAction(nameof(AddNewBook), new {isSuccess=true, bookId =id});

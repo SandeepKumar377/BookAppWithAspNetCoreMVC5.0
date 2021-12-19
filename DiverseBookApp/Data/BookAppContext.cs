@@ -13,5 +13,6 @@ namespace DiverseBookApp.Data
 
         }
         public DbSet<Books> Books { get; set; }
+
     }
 }

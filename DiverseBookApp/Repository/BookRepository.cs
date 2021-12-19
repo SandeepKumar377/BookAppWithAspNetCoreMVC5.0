@@ -1,4 +1,5 @@
-﻿using DiverseBookApp.Models;
+﻿using DiverseBookApp.Data;
+using DiverseBookApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,43 @@ namespace DiverseBookApp.Repository
 {
     public class BookRepository
     {
+        private readonly BookAppContext _context = null;
+
+        public BookRepository(BookAppContext context)
+        {
+            _context = context;
+        }
+
+        //Add book method 
+        public int AddBook(BookModel model)
+        {
+            var newBook = new Books()
+            {   
+                Author = model.Author,
+                Title = model.Title,
+                Description = model.Description,
+                CreatedOn   = DateTime.UtcNow,
+                UpdatedOn = DateTime.UtcNow,
+                TotalPages = model.TotalPages,
+            };
+            _context.Books.Add(newBook);
+            _context.SaveChanges();
+            return newBook.Id;
+        }
+
+        //Get book data
         public List<BookModel> GetAllBooks()
         {
             return DataSource();
         }
+
+        //Get book data by Id
         public BookModel GetBookById(int id)
         {
             return DataSource().Where(x => x.Id == id).FirstOrDefault();
         }
+
+        //Search book method
         public List<BookModel> SearchBook(string bookName, string authorName)
         {
             return DataSource().Where(x => x.Title.Contains(bookName) || x.Author.Contains(authorName)).ToList();

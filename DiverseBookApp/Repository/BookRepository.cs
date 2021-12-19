@@ -1,5 +1,6 @@
 ﻿using DiverseBookApp.Data;
 using DiverseBookApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,27 @@ namespace DiverseBookApp.Repository
         }
 
         //Get book data
-        public List<BookModel> GetAllBooks()
+        public async Task<List<BookModel>> GetAllBooks()
         {
-            return DataSource();
+            var books = new List<BookModel>();
+            var allbooks = await _context.Books.ToListAsync();
+            if (allbooks?.Any()==true)
+            {
+                foreach (var book in allbooks)
+                {
+                    books.Add(new BookModel()
+                    { 
+                        Author=book.Author,
+                        Category=book.Category,
+                        Title=book.Title,
+                        TotalPages=book.TotalPages,
+                        Description=book.Description,
+                        Language=book.Language,
+                        Id=book.Id,
+                    });
+                }
+            }
+            return books;
         }
 
         //Get book data by Id

@@ -17,16 +17,19 @@ namespace DiverseBookApp.Controllers
             _bookRepository = bookRepository;
         }
 
+        //Get all book data
         public async Task<ViewResult> GetAllBooks()
         {
             var data= await _bookRepository.GetAllBooks();
             return View(data);
         }
 
-        public ViewResult GetBook(int id)
+        //Get book data by Id
+        [Route("book-details/{id}")]
+        public async Task<ViewResult> GetBook(int id)
         {
 
-            var data = _bookRepository.GetBookById(id);
+            var data = await _bookRepository.GetBookById(id);
             return View(data);
         }
         public List<BookModel> SearchBooks(string bookName, string authorName)
@@ -40,14 +43,18 @@ namespace DiverseBookApp.Controllers
             ViewBag.BookId = bookId;
             return View();
         }
-        
+
+        //Add book method 
         [HttpPost]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
-           var id= await _bookRepository.AddBook(bookModel);
-            if (id>0)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(AddNewBook), new {isSuccess=true, bookId =id});
+                var id = await _bookRepository.AddBook(bookModel);
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(AddNewBook), new { isSuccess = true, bookId = id });
+                }
             }
             return View();
         }

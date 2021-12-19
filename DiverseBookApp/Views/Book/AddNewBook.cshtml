@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="display-4">Add new book</div>
-    @if( ViewBag.IsSuccess)
+    @if (ViewBag.IsSuccess == true)
     {        
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Success!</strong> New book added successfully. Click <a asp-action="getBook" asp-controller="Book" asp-route-id="@ViewBag.BookId">here</a> to view book details.
@@ -17,18 +17,22 @@
         <div class="mb-3">
             <label asp-for="Title" class="form-label"></label>
             <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger" ></span>
         </div>
         <div class="mb-3">
             <label asp-for="Author" class="form-label"></label>
             <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger" ></span>
         </div>
         <div class="mb-3">
             <label asp-for="Description" class="form-label"></label>
             <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger" ></span>
         </div>
         <div class="mb-3">
             <label asp-for="TotalPages" class="form-label"></label>
             <input asp-for="TotalPages" class="form-control" />
+            <span asp-validation-for="TotalPages" class="text-danger" ></span>
         </div>
         <div class="mb-3">
             <button class="btn btn-primary">Submit</button>

@@ -27,14 +27,14 @@ namespace DiverseBookApp.Repository
                 Description = model.Description,
                 CreatedOn   = DateTime.UtcNow,
                 UpdatedOn = DateTime.UtcNow,
-                TotalPages = model.TotalPages,
+                TotalPages = model.TotalPages.HasValue ? model.TotalPages.Value : 0,
             };
             await _context.Books.AddAsync(newBook);
             await _context.SaveChangesAsync();
             return newBook.Id;
         }
 
-        //Get book data
+        //Get all book data
         public async Task<List<BookModel>> GetAllBooks()
         {
             var books = new List<BookModel>();
@@ -59,9 +59,24 @@ namespace DiverseBookApp.Repository
         }
 
         //Get book data by Id
-        public BookModel GetBookById(int id)
+        public async Task<BookModel> GetBookById(int id)
         {
-            return DataSource().Where(x => x.Id == id).FirstOrDefault();
+            var book = await _context.Books.FindAsync(id);
+            if (book != null)
+            {
+                var bookDetails = new BookModel()
+                {
+                    Author = book.Author,
+                    Category = book.Category,
+                    Title = book.Title,
+                    TotalPages = book.TotalPages,
+                    Description = book.Description,
+                    Language = book.Language,
+                    Id = book.Id,
+                };
+            return bookDetails;
+            }
+            return null;
         }
 
         //Search book method

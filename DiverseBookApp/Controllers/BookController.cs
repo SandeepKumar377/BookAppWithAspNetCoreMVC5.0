@@ -1,9 +1,8 @@
 ﻿using DiverseBookApp.Models;
 using DiverseBookApp.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DiverseBookApp.Controllers

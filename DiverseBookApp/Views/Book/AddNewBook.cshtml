@@ -15,6 +15,11 @@
     }
     <form method="post">
         <div class="mb-3">
+            <label asp-for="MyField" class="form-label"></label>
+            <input asp-for="MyField" class="form-control" />
+            <span asp-validation-for="MyField" class="text-danger" ></span>
+        </div>
+        <div class="mb-3">
             <label asp-for="Title" class="form-label"></label>
             <input asp-for="Title" class="form-control" />
             <span asp-validation-for="Title" class="text-danger" ></span>

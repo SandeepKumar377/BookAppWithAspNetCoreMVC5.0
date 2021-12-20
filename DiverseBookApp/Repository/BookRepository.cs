@@ -27,6 +27,7 @@ namespace DiverseBookApp.Repository
                 Description = model.Description,
                 CreatedOn   = DateTime.UtcNow,
                 UpdatedOn = DateTime.UtcNow,
+                Language= model.Language,
                 TotalPages = model.TotalPages.HasValue ? model.TotalPages.Value : 0,
             };
             await _context.Books.AddAsync(newBook);

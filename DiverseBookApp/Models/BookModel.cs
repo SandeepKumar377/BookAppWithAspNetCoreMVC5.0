@@ -8,9 +8,6 @@ namespace DiverseBookApp.Models
 {
     public class BookModel
     {
-        [DataType(DataType.DateTime)]
-        [Display(Name ="Choose Date Time")]
-        public string MyField { get; set; }
         public int Id { get; set; }
 
         [StringLength(100, MinimumLength = 5)]

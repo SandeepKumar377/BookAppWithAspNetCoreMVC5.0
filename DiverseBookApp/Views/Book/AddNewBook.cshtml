@@ -29,11 +29,8 @@
         <div class="row col-md-12">
             <div class="mb-3 col-md-6">
                 <label asp-for="Language" class="form-label"></label>
-                <select asp-for="Language" class="form-control">
-                    <option value="">Select language</option>
-                    <option>Hindi</option>
-                    <option>English</option>
-                    <option>Dutch</option>
+                <select asp-for="Language" class="form-control" asp-items="ViewBag.Language">
+                    <option value="">Please select language</option>
                 </select>
                 <span asp-validation-for="Language" class="text-danger"></span>
             </div>

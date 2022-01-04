@@ -40,6 +40,7 @@ namespace DiverseBookApp.Controllers
             return _bookRepository.SearchBook(bookName, authorName);
         }
 
+        [HttpGet]
         public async Task<ViewResult> AddNewBook(bool isSuccess = false, int bookId = 0)
         {
             ViewBag.Language = new SelectList(await _languageRepository.GetLanguage(), "Id", "Name");
@@ -52,7 +53,6 @@ namespace DiverseBookApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
-            ViewBag.Language = new SelectList(await _languageRepository.GetLanguage(), "Id", "Name");
             if (ModelState.IsValid)
             {
                 var id = await _bookRepository.AddBook(bookModel);
@@ -61,6 +61,7 @@ namespace DiverseBookApp.Controllers
                     return RedirectToAction(nameof(AddNewBook), new { isSuccess = true, bookId = id });
                 }
             }
+            ViewBag.Language = new SelectList(await _languageRepository.GetLanguage(), "Id", "Name");
             return View();
         }
     }

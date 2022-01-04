@@ -1,4 +1,5 @@
-﻿@model BookModel
+﻿@using DiverseBookApp.Enums;
+@model BookModel
 
 @{
     ViewData["Title"] = "Add new book";
@@ -28,11 +29,11 @@
         </div>
         <div class="row col-md-12">
             <div class="mb-3 col-md-6">
-                <label asp-for="Language" class="form-label"></label>
-                <select asp-for="Language" class="form-control" asp-items="ViewBag.Language">
+                <label asp-for="LanguageId" class="form-label"></label>
+                <select asp-for="LanguageId" class="form-control" asp-items="ViewBag.Language">
                     <option value="">Please select language</option>
                 </select>
-                <span asp-validation-for="Language" class="text-danger"></span>
+                <span asp-validation-for="LanguageId" class="text-danger"></span>
             </div>
             <div class="mb-3 col-md-6">
                 <label asp-for="Description" class="form-label"></label>

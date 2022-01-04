@@ -15,12 +15,14 @@ namespace DiverseBookApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookAppContext>(options =>
-                options.UseSqlServer("Server=.;Database=BookApp;Integrated Security=True;"));
+                options.UseSqlServer("Server=.;Database=BookAppDiverse;Integrated Security=True;"));
             services.AddControllersWithViews();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
             services.AddScoped<BookRepository, BookRepository>();
+            services.AddScoped<LanguageRepository, LanguageRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

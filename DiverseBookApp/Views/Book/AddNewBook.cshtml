@@ -14,7 +14,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="row col-md-12">
             <div class="mb-3 col-md-6">
                 <label asp-for="Title" class="form-label"></label>
@@ -46,6 +46,13 @@
                 <label asp-for="TotalPages" class="form-label"></label>
                 <input asp-for="TotalPages" class="form-control" />
                 <span asp-validation-for="TotalPages" class="text-danger"></span>
+            </div>
+        </div> 
+        <div class="row col-md-12">
+            <div class="mb-3 col-md-6">
+                <label asp-for="CoverPhoto" class="form-label"></label>
+                <input asp-for="CoverPhoto" class="form-control" id="formFileMultiple">
+                <span asp-validation-for="CoverPhoto" class="text-danger"></span>
             </div>
         </div>
         <div class="row col-md-12">

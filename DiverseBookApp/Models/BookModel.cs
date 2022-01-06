@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using DiverseBookApp.Enums;
 using DiverseBookApp.Helpers;
+using Microsoft.AspNetCore.Http;
 
 namespace DiverseBookApp.Models
 {
@@ -13,8 +14,8 @@ namespace DiverseBookApp.Models
         public int Id { get; set; }
 
         [StringLength(100, MinimumLength = 5)]
-        //[Required(ErrorMessage ="Please enter Book Title!")]
-        [MyCustomValidation(ErrorMessage ="This is error message from custom validation!")]
+        [Required(ErrorMessage = "Please enter Book Title!")]
+        //[MyCustomValidation(ErrorMessage ="This is error message from custom validation!")]
         public string Title { get; set; }
         [Required]
         public string Author { get; set; }
@@ -28,5 +29,10 @@ namespace DiverseBookApp.Models
         [Required]
         [Display(Name ="Total Pages")]
         public int? TotalPages { get; set; }
+
+        [Required]
+        [Display(Name ="Choose Cover Photo of your book")]
+        public IFormFile CoverPhoto { get; set; }
+        public string CoverImageUrl { get; set; }
     }
 }

@@ -29,6 +29,7 @@ namespace DiverseBookApp.Repository
                 UpdatedOn = DateTime.UtcNow,
                 LanguageId = model.LanguageId,
                 TotalPages = model.TotalPages.HasValue ? model.TotalPages.Value : 0,
+                CoverImageUrl = model.CoverImageUrl,
             };
             await _context.Books.AddAsync(newBook);
             await _context.SaveChangesAsync();
@@ -38,26 +39,18 @@ namespace DiverseBookApp.Repository
         //Get all book data
         public async Task<List<BookModel>> GetAllBooks()
         {
-            var books = new List<BookModel>();
-            var allbooks = await _context.Books.ToListAsync();
-            if (allbooks?.Any() == true)
+            return await _context.Books.Select(book => new BookModel()
             {
-                foreach (var book in allbooks)
-                {
-                    books.Add(new BookModel()
-                    {
-                        Author = book.Author,
-                        Category = book.Category,
-                        Title = book.Title,
-                        TotalPages = book.TotalPages,
-                        Description = book.Description,
-                        LanguageId = book.LanguageId,
-                        Language = book.Language.Name,
-                        Id = book.Id,
-                    });
-                }
-            }
-            return books;
+                Id = book.Id,
+                Author = book.Author,
+                Category = book.Category,
+                Description = book.Description,
+                Title = book.Title,
+                Language = book.Language.Name,
+                LanguageId = book.LanguageId,
+                TotalPages = book.TotalPages,
+                CoverImageUrl = book.CoverImageUrl,
+            }).ToListAsync();
         }
 
         //Get book data by Id
@@ -65,7 +58,7 @@ namespace DiverseBookApp.Repository
         {
             return await _context.Books.Where(x => x.Id == id)
                 .Select(book => new BookModel()
-                {                
+                {
                     Author = book.Author,
                     Category = book.Category,
                     Title = book.Title,
@@ -74,15 +67,14 @@ namespace DiverseBookApp.Repository
                     LanguageId = book.LanguageId,
                     Language = book.Language.Name,
                     Id = book.Id,
+                    CoverImageUrl = book.CoverImageUrl,
                 }).FirstOrDefaultAsync();
         }
-        
 
-    //Search book method
-    public List<BookModel> SearchBook(string bookName, string authorName)
-    {
-        return null;
+        //Search book method
+        public List<BookModel> SearchBook(string bookName, string authorName)
+        {
+            return null;
+        }
     }
 }
-}
- 

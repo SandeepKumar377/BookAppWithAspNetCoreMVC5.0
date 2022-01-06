@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\BookAppData\CoverPhoto\" />
+    <Folder Include="wwwroot\BookAppData\GalleryImages\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>

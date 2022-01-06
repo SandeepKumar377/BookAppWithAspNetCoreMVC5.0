@@ -1,8 +1,11 @@
 ﻿using DiverseBookApp.Data;
 using DiverseBookApp.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,10 +14,13 @@ namespace DiverseBookApp.Repository
     public class BookRepository
     {
         private readonly BookAppContext _context = null;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BookRepository(BookAppContext context)
+        public BookRepository(BookAppContext context,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         //Add book method 
@@ -31,6 +37,16 @@ namespace DiverseBookApp.Repository
                 TotalPages = model.TotalPages.HasValue ? model.TotalPages.Value : 0,
                 CoverImageUrl = model.CoverImageUrl,
             };
+
+            newBook.BookGallery = new List<BookGallery>();
+            foreach (var file in model.Gallery)
+            {
+                newBook.BookGallery.Add(new BookGallery()
+                {
+                    Name = file.Name,
+                    Url = file.Url,
+                });
+            }
             await _context.Books.AddAsync(newBook);
             await _context.SaveChangesAsync();
             return newBook.Id;
@@ -68,6 +84,12 @@ namespace DiverseBookApp.Repository
                     Language = book.Language.Name,
                     Id = book.Id,
                     CoverImageUrl = book.CoverImageUrl,
+                    Gallery = book.BookGallery.Select(g => new GalleryImagesModel()
+                    {
+                        Id=g.Id,
+                        Name=g.Name,
+                        Url=g.Url,
+                    }).ToList()
                 }).FirstOrDefaultAsync();
         }
 
@@ -75,6 +97,14 @@ namespace DiverseBookApp.Repository
         public List<BookModel> SearchBook(string bookName, string authorName)
         {
             return null;
+        }
+        public async Task<string> UploadImage(string folderPath, IFormFile file)
+        {
+
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return "/" + folderPath;
         }
     }
 }

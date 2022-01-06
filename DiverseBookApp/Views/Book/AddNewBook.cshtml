@@ -56,6 +56,13 @@
             </div>
         </div>
         <div class="row col-md-12">
+            <div class="mb-3 col-md-6">
+                <label asp-for="GalleryImages" class="form-label"></label>
+                <input asp-for="GalleryImages" class="form-control" id="formFileMultiple">
+                <span asp-validation-for="GalleryImages" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row col-md-12">
             <div class="mb-3">
                 <button class="btn btn-primary">Submit</button>
             </div>

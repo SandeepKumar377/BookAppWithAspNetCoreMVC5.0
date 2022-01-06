@@ -34,5 +34,11 @@ namespace DiverseBookApp.Models
         [Display(Name ="Choose Cover Photo of your book")]
         public IFormFile CoverPhoto { get; set; }
         public string CoverImageUrl { get; set; }
+
+        [Required]
+        [Display(Name = "Choose Gallery Image of your book")]
+        public IFormFileCollection GalleryImages { get; set; }
+
+        public List<GalleryImagesModel> Gallery { get; set; }
     }
 }

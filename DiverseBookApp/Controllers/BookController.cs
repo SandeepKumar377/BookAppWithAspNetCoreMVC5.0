@@ -1,13 +1,8 @@
 ﻿using DiverseBookApp.Models;
 using DiverseBookApp.Repository;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DiverseBookApp.Controllers
@@ -16,17 +11,14 @@ namespace DiverseBookApp.Controllers
     {
         private readonly BookRepository _bookRepository = null;
         private readonly LanguageRepository _languageRepository = null;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
 
 
         public BookController(BookRepository bookRepository,
-            LanguageRepository languageRepository,
-            IWebHostEnvironment webHostEnvironment)
+            LanguageRepository languageRepository)
         {
             _bookRepository = bookRepository;
             _languageRepository = languageRepository;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         //Get all book data
@@ -66,10 +58,21 @@ namespace DiverseBookApp.Controllers
                 if (bookModel.CoverPhoto != null)
                 {
                     string folder = "BookAppData/CoverPhoto/";
-                    folder += Guid.NewGuid().ToString()+"_"+bookModel.CoverPhoto.FileName;
-                    bookModel.CoverImageUrl = folder;
-                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
-                    await bookModel.CoverPhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                    bookModel.CoverImageUrl=await _bookRepository.UploadImage(folder, bookModel.CoverPhoto);
+                }
+                if (bookModel.GalleryImages != null)
+                {
+                    string folder = "BookAppData/GalleryImages/";
+                    bookModel.Gallery = new List<GalleryImagesModel>();
+                    foreach (var file in bookModel.GalleryImages)
+                    {
+                        var gallery = new GalleryImagesModel()
+                        {
+                            Name = file.FileName,
+                            Url = await _bookRepository.UploadImage(folder, file),
+                        };
+                        bookModel.Gallery.Add(gallery);
+                    }
                 }
                 var id = await _bookRepository.AddBook(bookModel);
                 if (id > 0)
@@ -79,6 +82,6 @@ namespace DiverseBookApp.Controllers
             }
             ViewBag.Language = new SelectList(await _languageRepository.GetLanguage(), "Id", "Name");
             return View();
-        }
+        }       
     }
 }

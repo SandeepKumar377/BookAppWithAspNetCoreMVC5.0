@@ -40,7 +40,7 @@
             <P class="align-items-center">
                 @Model.Description
             </P>
-            <button class="btn btn-primary">Read Now</button>
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">Read Now</a>
             <ul class="list-group my-3">
                 <li class="list-group-item"> <strong> Category : </strong> @Model.Category</li>
                 <li class="list-group-item"><strong> Total Pages : </strong>@Model.TotalPages</li>
@@ -68,6 +68,22 @@
                 </div>
             </div>
         }
+    </div>
+    <div class="modal" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @*<embed src="@Model.BookPdfUrl" class="w-100 h-100" />*@
+                    <iframe src="@Model.BookPdfUrl" class="w-100 h-100"></iframe>0
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

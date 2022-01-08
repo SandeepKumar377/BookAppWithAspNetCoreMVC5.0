@@ -40,5 +40,10 @@ namespace DiverseBookApp.Models
         public IFormFileCollection GalleryImages { get; set; }
 
         public List<GalleryImagesModel> Gallery { get; set; }
+
+        [Required]
+        [Display(Name = "Upload book PDF file")]
+        public IFormFile BookPdf { get; set; }
+        public string BookPdfUrl { get; set; }
     }
 }

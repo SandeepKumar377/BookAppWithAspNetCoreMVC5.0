@@ -47,11 +47,9 @@
                 <input asp-for="TotalPages" class="form-control" />
                 <span asp-validation-for="TotalPages" class="text-danger"></span>
             </div>
-        </div> 
-        <div class="row col-md-12">
             <div class="mb-3 col-md-6">
                 <label asp-for="CoverPhoto" class="form-label"></label>
-                <input asp-for="CoverPhoto" class="form-control" id="formFileMultiple">
+                <input asp-for="CoverPhoto" class="form-control" id="formFile">
                 <span asp-validation-for="CoverPhoto" class="text-danger"></span>
             </div>
         </div>
@@ -60,6 +58,11 @@
                 <label asp-for="GalleryImages" class="form-label"></label>
                 <input asp-for="GalleryImages" class="form-control" id="formFileMultiple">
                 <span asp-validation-for="GalleryImages" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-6">
+                <label asp-for="BookPdf" class="form-label"></label>
+                <input asp-for="BookPdf"  accept=".pdf,.doc" class="form-control" id="formFile">
+                <span asp-validation-for="BookPdf" class="text-danger"></span>
             </div>
         </div>
         <div class="row col-md-12">

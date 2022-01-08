@@ -36,6 +36,7 @@ namespace DiverseBookApp.Repository
                 LanguageId = model.LanguageId,
                 TotalPages = model.TotalPages.HasValue ? model.TotalPages.Value : 0,
                 CoverImageUrl = model.CoverImageUrl,
+                BookPdfUrl = model.BookPdfUrl,
             };
 
             newBook.BookGallery = new List<BookGallery>();
@@ -66,6 +67,7 @@ namespace DiverseBookApp.Repository
                 LanguageId = book.LanguageId,
                 TotalPages = book.TotalPages,
                 CoverImageUrl = book.CoverImageUrl,
+                BookPdfUrl = book.BookPdfUrl,
             }).ToListAsync();
         }
 
@@ -89,7 +91,8 @@ namespace DiverseBookApp.Repository
                         Id=g.Id,
                         Name=g.Name,
                         Url=g.Url,
-                    }).ToList()
+                    }).ToList(),
+                    BookPdfUrl = book.BookPdfUrl,
                 }).FirstOrDefaultAsync();
         }
 
@@ -98,7 +101,7 @@ namespace DiverseBookApp.Repository
         {
             return null;
         }
-        public async Task<string> UploadImage(string folderPath, IFormFile file)
+        public async Task<string> UploadFile(string folderPath, IFormFile file)
         {
 
             folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;

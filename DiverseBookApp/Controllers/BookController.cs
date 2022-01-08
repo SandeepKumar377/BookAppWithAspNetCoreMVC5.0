@@ -58,7 +58,7 @@ namespace DiverseBookApp.Controllers
                 if (bookModel.CoverPhoto != null)
                 {
                     string folder = "BookAppData/CoverPhoto/";
-                    bookModel.CoverImageUrl=await _bookRepository.UploadImage(folder, bookModel.CoverPhoto);
+                    bookModel.CoverImageUrl=await _bookRepository.UploadFile(folder, bookModel.CoverPhoto);
                 }
                 if (bookModel.GalleryImages != null)
                 {
@@ -69,10 +69,15 @@ namespace DiverseBookApp.Controllers
                         var gallery = new GalleryImagesModel()
                         {
                             Name = file.FileName,
-                            Url = await _bookRepository.UploadImage(folder, file),
+                            Url = await _bookRepository.UploadFile(folder, file),
                         };
                         bookModel.Gallery.Add(gallery);
                     }
+                }
+                if (bookModel.BookPdf != null)
+                {
+                    string folder = "BookAppData/BookPDF/";
+                    bookModel.BookPdfUrl = await _bookRepository.UploadFile(folder, bookModel.BookPdf);
                 }
                 var id = await _bookRepository.AddBook(bookModel);
                 if (id > 0)

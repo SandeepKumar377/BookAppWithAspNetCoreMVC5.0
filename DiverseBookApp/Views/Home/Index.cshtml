@@ -15,8 +15,8 @@
 </section>
 <h1 class="py-3 container">Top Books</h1>
 <div class="container">
-    @await Component.InvokeAsync("TopBooks")
-    @*<vc:top-books></vc:top-books>*@
+    @await Component.InvokeAsync("TopBooks", new{count=6})
+    @*<vc:top-books count="3"></vc:top-books>*@
 </div>
 @section scripts{
 <script>

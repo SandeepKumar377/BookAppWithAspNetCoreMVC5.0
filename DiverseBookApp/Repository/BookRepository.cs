@@ -71,7 +71,7 @@ namespace DiverseBookApp.Repository
             }).ToListAsync();
         }
         //Get Top Books data
-        public async Task<List<BookModel>> GetTopBooks()
+        public async Task<List<BookModel>> GetTopBooks(int count)
         {
             return await _context.Books.Select(book => new BookModel()
             {
@@ -85,7 +85,7 @@ namespace DiverseBookApp.Repository
                 TotalPages = book.TotalPages,
                 CoverImageUrl = book.CoverImageUrl,
                 BookPdfUrl = book.BookPdfUrl,
-            }).Take(6).ToListAsync();
+            }).Take(count).ToListAsync();
         }
 
         //Get book data by Id

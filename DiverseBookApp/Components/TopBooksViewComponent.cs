@@ -12,9 +12,9 @@ namespace DiverseBookApp.Components
         {
             _bookRepository = bookRepository;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int count)
         {
-            var books = await _bookRepository.GetTopBooks();
+            var books = await _bookRepository.GetTopBooks(count);
             return View(books);
         }
     }

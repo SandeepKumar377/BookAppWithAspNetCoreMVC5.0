@@ -20,8 +20,8 @@ namespace DiverseBookApp
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
-            services.AddScoped<BookRepository, BookRepository>();
-            services.AddScoped<LanguageRepository, LanguageRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
 
         }
 

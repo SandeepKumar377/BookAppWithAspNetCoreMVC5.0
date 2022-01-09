@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DiverseBookApp.Repository
 {
-    public class BookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly BookAppContext _context = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -105,9 +105,9 @@ namespace DiverseBookApp.Repository
                     CoverImageUrl = book.CoverImageUrl,
                     Gallery = book.BookGallery.Select(g => new GalleryImagesModel()
                     {
-                        Id=g.Id,
-                        Name=g.Name,
-                        Url=g.Url,
+                        Id = g.Id,
+                        Name = g.Name,
+                        Url = g.Url,
                     }).ToList(),
                     BookPdfUrl = book.BookPdfUrl,
                 }).FirstOrDefaultAsync();

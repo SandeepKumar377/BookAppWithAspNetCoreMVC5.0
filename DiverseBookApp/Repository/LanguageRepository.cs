@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DiverseBookApp.Repository
 {
-    public class LanguageRepository
+    public class LanguageRepository : ILanguageRepository
     {
         private readonly BookAppContext _context = null;
 

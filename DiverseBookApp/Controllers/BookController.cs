@@ -22,6 +22,7 @@ namespace DiverseBookApp.Controllers
         }
 
         //Get all book data
+        [Route("all-books")]
         public async Task<ViewResult> GetAllBooks()
         {
             var data = await _bookRepository.GetAllBooks();
@@ -29,7 +30,7 @@ namespace DiverseBookApp.Controllers
         }
 
         //Get book data by Id
-        [Route("book-details/{id}")]
+        [Route("book-details/{id:int:min(1)}")]
         public async Task<ViewResult> GetBook(int id)
         {
             var data = await _bookRepository.GetBookById(id);

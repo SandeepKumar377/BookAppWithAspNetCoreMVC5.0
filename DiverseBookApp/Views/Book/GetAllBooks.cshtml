@@ -10,7 +10,9 @@
     <div class="row col-md-12">
         @foreach (var book in Model)
         {
-            <partial name="_BookThumbnail" model="@book" />            
+            <div class="col-md-4">
+                <partial name="_BookThumbnail" model="@book" />
+            </div>
         }
     </div>
 </div>

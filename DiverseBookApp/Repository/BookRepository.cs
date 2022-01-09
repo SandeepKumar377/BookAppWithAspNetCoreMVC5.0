@@ -70,6 +70,23 @@ namespace DiverseBookApp.Repository
                 BookPdfUrl = book.BookPdfUrl,
             }).ToListAsync();
         }
+        //Get Top Books data
+        public async Task<List<BookModel>> GetTopBooks()
+        {
+            return await _context.Books.Select(book => new BookModel()
+            {
+                Id = book.Id,
+                Author = book.Author,
+                Category = book.Category,
+                Description = book.Description,
+                Title = book.Title,
+                Language = book.Language.Name,
+                LanguageId = book.LanguageId,
+                TotalPages = book.TotalPages,
+                CoverImageUrl = book.CoverImageUrl,
+                BookPdfUrl = book.BookPdfUrl,
+            }).Take(6).ToListAsync();
+        }
 
         //Get book data by Id
         public async Task<BookModel> GetBookById(int id)

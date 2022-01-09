@@ -14,26 +14,9 @@
     </div>
 </section>
 <h1 class="py-3 container">Top Books</h1>
+<div class="container">
     @await Component.InvokeAsync("TopBooks")
     @*<vc:top-books></vc:top-books>*@
-
-<div class="album py-3 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                @*<partial name="_BookThumbnail" model="new BookModel()" />*@
-                @Html.Partial("_BookThumbnail", new BookModel())
-            </div>
-            <div class="col">
-                @*<partial name="_BookThumbnail" model="new BookModel()" />*@
-                @await Html.PartialAsync("_BookThumbnail", new BookModel())
-            </div>
-            <div class="col">
-                @*<partial name="_BookThumbnail" model="new BookModel()" />*@
-                @{Html.RenderPartial("_BookThumbnail", new BookModel());}
-            </div>
-        </div>
-    </div>
 </div>
 @section scripts{
 <script>

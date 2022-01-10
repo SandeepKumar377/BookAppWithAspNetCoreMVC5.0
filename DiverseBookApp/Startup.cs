@@ -2,6 +2,7 @@ using DiverseBookApp.Data;
 using DiverseBookApp.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,8 @@ namespace DiverseBookApp
         {
             services.AddDbContext<BookAppContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultString")));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<BookAppContext>();
+
             services.AddControllersWithViews();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -43,6 +46,7 @@ namespace DiverseBookApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

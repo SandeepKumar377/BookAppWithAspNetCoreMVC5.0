@@ -1,5 +1,6 @@
 ﻿using DiverseBookApp.Models;
 using DiverseBookApp.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace DiverseBookApp.Controllers
         private readonly ILanguageRepository _languageRepository = null;
 
 
-
         public BookController(IBookRepository bookRepository,
             ILanguageRepository languageRepository)
         {
@@ -21,7 +21,7 @@ namespace DiverseBookApp.Controllers
             _languageRepository = languageRepository;
         }
 
-        //Get all book data
+        //Get all book GET method
         [Route("all-books")]
         public async Task<ViewResult> GetAllBooks()
         {
@@ -29,7 +29,7 @@ namespace DiverseBookApp.Controllers
             return View(data);
         }
 
-        //Get book data by Id
+        //Get book by Id GET method
         [Route("book-details/{id:int:min(1)}")]
         public async Task<ViewResult> GetBook(int id)
         {
@@ -41,6 +41,8 @@ namespace DiverseBookApp.Controllers
             return _bookRepository.SearchBook(bookName, authorName);
         }
 
+
+        //Add new Book Get method
         [HttpGet]
         public async Task<ViewResult> AddNewBook(bool isSuccess = false, int bookId = 0)
         {
@@ -50,8 +52,9 @@ namespace DiverseBookApp.Controllers
             return View();
         }
 
-        //Add book method 
+        //Add new book POST method 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
             if (ModelState.IsValid)

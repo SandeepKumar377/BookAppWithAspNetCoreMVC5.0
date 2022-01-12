@@ -14,7 +14,6 @@ namespace DiverseBookApp.Controllers
             _accountRepository = accountRepository;
         }
 
-
         [Route("signup")]
         public IActionResult Signup()
         {
@@ -37,6 +36,7 @@ namespace DiverseBookApp.Controllers
                     return View(signupUserModel);
                 }
                 ModelState.Clear();
+                return View();
             }
             return View();
         }

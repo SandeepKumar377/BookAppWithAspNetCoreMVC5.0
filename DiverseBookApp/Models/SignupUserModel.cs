@@ -1,9 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DiverseBookApp.Models
 {
     public class SignupUserModel
     {
+        [Display(Name ="First Name")]
+        [Required(ErrorMessage ="Please enter Fisrt Name!")]
+        public string FirstName { get; set; }
+
+
+        [Display(Name ="Last Name")]
+        public string LastName { get; set; }
+        
         [Required(ErrorMessage ="Please enter email!")]
         [EmailAddress(ErrorMessage ="Please enter valid Email!")]
         public string Email { get; set; }

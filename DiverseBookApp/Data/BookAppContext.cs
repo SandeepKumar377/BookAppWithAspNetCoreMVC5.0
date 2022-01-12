@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using DiverseBookApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DiverseBookApp.Data
 {
-    public class BookAppContext : IdentityDbContext
+    public class BookAppContext : IdentityDbContext<ApplicationUsers>
     {
         public BookAppContext(DbContextOptions<BookAppContext> options) : base(options)
         {

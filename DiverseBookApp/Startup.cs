@@ -1,4 +1,5 @@
 using DiverseBookApp.Data;
+using DiverseBookApp.Models;
 using DiverseBookApp.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +25,7 @@ namespace DiverseBookApp
         {
             services.AddDbContext<BookAppContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultString")));
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<BookAppContext>();
+            services.AddIdentity<ApplicationUsers, IdentityRole>().AddEntityFrameworkStores<BookAppContext>();
 
             services.AddControllersWithViews();
 #if DEBUG

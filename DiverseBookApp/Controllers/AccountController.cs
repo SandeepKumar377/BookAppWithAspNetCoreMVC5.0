@@ -53,14 +53,21 @@ namespace DiverseBookApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result =await _accountRepository.UserLogin(loginModel);
+                var result = await _accountRepository.UserLogin(loginModel);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("","Invalid Credentials");
+                ModelState.AddModelError("", "Invalid Credentials");
             }
             return View(loginModel);
+        }
+
+        [Route("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _accountRepository.Logout();
+            return RedirectToAction("Index", "Home");
         }
 
     }

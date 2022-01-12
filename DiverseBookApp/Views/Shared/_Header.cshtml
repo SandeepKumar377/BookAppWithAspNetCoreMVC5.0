@@ -26,10 +26,7 @@
                         <a class="nav-link" asp-controller="Book" asp-action="addNewBook">Add new book</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <a class="btn btn-outline-success mx-2" asp-controller="Account" asp-action="Login"> Log in </a>
-                    <a class="btn btn-outline-success mx-2" asp-controller="Account" asp-action="Signup"> Register </a>
-                </form>
+               <partial name="_LoginInfo" />
             </div>
         </div>
     </nav>

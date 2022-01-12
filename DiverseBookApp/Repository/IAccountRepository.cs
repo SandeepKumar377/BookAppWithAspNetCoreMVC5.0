@@ -8,5 +8,6 @@ namespace DiverseBookApp.Repository
     {
         Task<IdentityResult> CreateUser(SignupUserModel signupUserModel);
         Task<SignInResult> UserLogin(LoginModel loginModel);
+        Task Logout();
     }
 }

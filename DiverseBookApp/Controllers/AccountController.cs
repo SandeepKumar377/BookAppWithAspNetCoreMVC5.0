@@ -49,13 +49,17 @@ namespace DiverseBookApp.Controllers
 
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<IActionResult> Login(LoginModel loginModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await _accountRepository.UserLogin(loginModel);
                 if (result.Succeeded)
                 {
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Invalid Credentials");

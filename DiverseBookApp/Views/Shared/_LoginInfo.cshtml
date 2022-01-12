@@ -7,14 +7,14 @@
             Hello @User.Identity.Name
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" asp-controller="Account"asp-action="Logout">Log out</a></li>
+            <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Log out</a></li>
         </ul>
     </li>
 }
 else
 {
     <form class="d-flex">
-        <a class="btn btn-outline-success mx-2" asp-controller="Account" asp-action="Login"> Log in </a>
+        <a class="btn btn-outline-success mx-2" asp-route-returnUrl="@Context.Request.Path" asp-controller="Account" asp-action="Login"> Log in </a>
         <a class="btn btn-outline-success mx-2" asp-controller="Account" asp-action="Signup"> Register </a>
     </form>
 }

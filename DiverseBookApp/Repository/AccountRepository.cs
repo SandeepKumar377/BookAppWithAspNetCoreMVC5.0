@@ -7,10 +7,12 @@ namespace DiverseBookApp.Repository
     public class AccountRepository : IAccountRepository
     {
         private readonly UserManager<ApplicationUsers> _userManager;
+        private readonly SignInManager<ApplicationUsers> _signInManager;
 
-        public AccountRepository(UserManager<ApplicationUsers> userManager)
+        public AccountRepository(UserManager<ApplicationUsers> userManager, SignInManager<ApplicationUsers> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
         public async Task<IdentityResult> CreateUser(SignupUserModel signupUserModel)
         {
@@ -23,7 +25,12 @@ namespace DiverseBookApp.Repository
                 UserName = signupUserModel.Email,
             };
             var result = await _userManager.CreateAsync(user, signupUserModel.Password);
-            return result; 
+            return result;
+        }
+
+        public async Task<SignInResult> UserLogin(LoginModel loginModel)
+        {
+            return await _signInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, loginModel.RememberMe, false);
         }
     }
 }

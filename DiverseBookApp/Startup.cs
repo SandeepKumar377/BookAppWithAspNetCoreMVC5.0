@@ -26,6 +26,15 @@ namespace DiverseBookApp
             services.AddDbContext<BookAppContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultString")));
             services.AddIdentity<ApplicationUsers, IdentityRole>().AddEntityFrameworkStores<BookAppContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 5;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireNonAlphanumeric = false;
+            });
 
             services.AddControllersWithViews();
 #if DEBUG

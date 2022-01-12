@@ -35,6 +35,10 @@ namespace DiverseBookApp
                 options.Password.RequiredUniqueChars = 1;
                 options.Password.RequireNonAlphanumeric = false;
             });
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = _configuration["Application:LoginPath"];
+            });
 
             services.AddControllersWithViews();
 #if DEBUG

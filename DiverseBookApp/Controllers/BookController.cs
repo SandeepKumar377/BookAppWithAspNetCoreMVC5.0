@@ -44,6 +44,7 @@ namespace DiverseBookApp.Controllers
 
         //Add new Book Get method
         [HttpGet]
+        [Authorize]
         public async Task<ViewResult> AddNewBook(bool isSuccess = false, int bookId = 0)
         {
             ViewBag.Language = new SelectList(await _languageRepository.GetLanguage(), "Id", "Name");
@@ -54,7 +55,6 @@ namespace DiverseBookApp.Controllers
 
         //Add new book POST method 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
             if (ModelState.IsValid)

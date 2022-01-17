@@ -2,9 +2,9 @@
 
 @if (_signInManager.IsSignedIn(User))
 {
-    <li class="d-flex nav-item dropdown mx-3">
+    <li class="d-flex nav-item dropdown">
         <a class="btn btn-outline-success dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Hello @User.Identity.Name
+            Hello @(User.FindFirst("UserFirstName").Value+" "+ User.FindFirst("UserLastName").Value)
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Log out</a></li>
@@ -18,3 +18,4 @@ else
         <a class="btn btn-outline-success mx-2" asp-controller="Account" asp-action="Signup"> Register </a>
     </form>
 }
+ 

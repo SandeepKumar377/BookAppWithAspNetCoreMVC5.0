@@ -1,4 +1,5 @@
 using DiverseBookApp.Data;
+using DiverseBookApp.Helpers;
 using DiverseBookApp.Models;
 using DiverseBookApp.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -47,6 +48,7 @@ namespace DiverseBookApp
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUsers>, ApplicationUserClaimsPrincipalFactory>();
 
         }
 

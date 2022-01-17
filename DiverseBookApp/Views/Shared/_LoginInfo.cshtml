@@ -4,7 +4,7 @@
 {
     <li class="d-flex nav-item dropdown">
         <a class="btn btn-outline-success dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Hello @(User.FindFirst("UserFirstName").Value+" "+ User.FindFirst("UserLastName").Value)
+            Hello @((User.FindFirst("UserFirstName").Value)==null ?User.FindFirst("UserFirstName").Value:User.FindFirst("UserEmail").Value)
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Log out</a></li>

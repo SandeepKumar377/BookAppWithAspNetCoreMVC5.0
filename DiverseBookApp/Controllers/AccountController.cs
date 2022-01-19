@@ -73,6 +73,33 @@ namespace DiverseBookApp.Controllers
             await _accountRepository.Logout();
             return RedirectToAction("Index", "Home");
         }
+        
+        [Route("change-password")]
+        public IActionResult ChangePassword() 
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        [Route("change-password")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel changePasswordModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _accountRepository.ChangePassword(changePasswordModel);
+                if (result.Succeeded)
+                {
+                    ViewBag.IsSuccess = true;
+                    ModelState.Clear();
+                    return View();
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+            return View(changePasswordModel);
+        }
 
     }
 }

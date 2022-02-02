@@ -62,7 +62,14 @@ namespace DiverseBookApp.Controllers
                     }
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", "Invalid Credentials");
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError("", "Not Allowed to login!");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid Credentials");
+                }
             }
             return View(loginModel);
         }

@@ -36,6 +36,8 @@ namespace DiverseBookApp
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredUniqueChars = 1;
                 options.Password.RequireNonAlphanumeric = false;
+
+                options.SignIn.RequireConfirmedEmail = true;
             });
             services.ConfigureApplicationCookie(config =>
             {

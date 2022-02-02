@@ -1,4 +1,5 @@
-﻿using DiverseBookApp.Services;
+﻿using DiverseBookApp.Models;
+using DiverseBookApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,35 +11,37 @@ namespace DiverseBookApp.Controllers
     public class HomeController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserService userService, IEmailService emailService)
         {
             _userService = userService;
+            _emailService = emailService;
         }
 
-        [ViewData]
-        public string CustomProperty { get; set; }
-        [ViewData]
-        public string Title { get; set; }
-        [ViewData]
-        public string Book { get; set; }
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
+            UserEmailOptions options = new UserEmailOptions
+            {
+                ToEmails = new List<string>() { "test@gmail.com" },
+                PlaceHolders = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", "Sandeep")
+                }
+            };
+            await _emailService.SendTestEmail(options);
+
             var userId = _userService.GetUserId();
             var isLoggedIn = _userService.IsAuthenticated();
-
-            Title = "Home from Ctrl";
-            CustomProperty = "Sandeep kumar";
             return View();
         }
+
         public ViewResult AboutUs()
         {
-            Title = "About us from Ctrl";
             return View();
         }
         public ViewResult ContactUs()
         {
-            Title = "Contact us from Ctrl";
             return View();
         }
     }

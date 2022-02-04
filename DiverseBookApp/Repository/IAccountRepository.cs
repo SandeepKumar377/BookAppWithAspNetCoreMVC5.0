@@ -11,5 +11,7 @@ namespace DiverseBookApp.Repository
         Task Logout();
         Task<IdentityResult> ChangePassword(ChangePasswordModel changePasswordModel);
         Task<IdentityResult> ConfirmEmail(string uid, string token);
+        Task GenerateEmailConfirmationTokenAsync(ApplicationUsers user);
+        Task<ApplicationUsers> GetUserByEmailAsync(string email);
     }
 }

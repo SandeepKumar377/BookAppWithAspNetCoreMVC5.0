@@ -27,9 +27,14 @@ namespace DiverseBookApp.Repository
             _configuration = configuration;
             _signInManager = signInManager;
         }
+
+        public async Task<ApplicationUsers> GetUserByEmailAsync(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
+        }
+
         public async Task<IdentityResult> CreateUser(SignupUserModel signupUserModel)
         {
-
             var user = new ApplicationUsers()
             {
                 FirstName = signupUserModel.FirstName,
@@ -40,13 +45,18 @@ namespace DiverseBookApp.Repository
             var result = await _userManager.CreateAsync(user, signupUserModel.Password);
             if (result.Succeeded)
             {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                if (!string.IsNullOrEmpty(token))
-                {
-                    await SendConfirmationEmail(user, token);
-                }
+                await GenerateEmailConfirmationTokenAsync(user);
             }
             return result;
+        }
+
+        public async Task GenerateEmailConfirmationTokenAsync(ApplicationUsers user)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            if (!string.IsNullOrEmpty(token))
+            {
+                await SendConfirmationEmail(user, token);
+            }
         }
 
         public async Task<SignInResult> UserLogin(LoginModel loginModel)

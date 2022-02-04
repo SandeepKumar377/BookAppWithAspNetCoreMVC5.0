@@ -108,5 +108,20 @@ namespace DiverseBookApp.Controllers
             return View(changePasswordModel);
         }
 
+        [HttpGet("confirm-email")]
+        public async Task<IActionResult> ConfirmMail(string uid, string token)
+        {
+            if (!string.IsNullOrEmpty(uid)&& !string.IsNullOrEmpty(token))
+            {
+                token = token.Replace(' ', '+');
+                var result = await _accountRepository.ConfirmEmail(uid, token);
+                if (result.Succeeded)
+                {
+                    ViewBag.IsSuccess = true;
+                }
+            }
+            return View();
+        }
+
     }
 }

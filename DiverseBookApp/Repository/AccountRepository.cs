@@ -65,6 +65,10 @@ namespace DiverseBookApp.Repository
             var user = await _userManager.FindByIdAsync(userId);
             return await _userManager.ChangePasswordAsync(user, changePasswordModel.CurrentPassword, changePasswordModel.NewPassword);
         }
+        public async Task<IdentityResult> ConfirmEmail(string uid, string token)
+        {
+            return await _userManager.ConfirmEmailAsync(await _userManager.FindByIdAsync(uid), token);
+        }
 
         private async Task SendConfirmationEmail(ApplicationUsers user, string token)
         {

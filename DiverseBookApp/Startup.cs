@@ -27,7 +27,8 @@ namespace DiverseBookApp
         {
             services.AddDbContext<BookAppContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultString")));
-            services.AddIdentity<ApplicationUsers, IdentityRole>().AddEntityFrameworkStores<BookAppContext>();
+            services.AddIdentity<ApplicationUsers, IdentityRole>()
+                .AddEntityFrameworkStores<BookAppContext>().AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 5;
